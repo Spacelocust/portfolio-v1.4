@@ -66,6 +66,18 @@ class Project
     private ?string $picture = null;
 
     /**
+     * @var File $pictureFile
+     * @Vich\UploadableField(mapping="pictures_directory", fileNameProperty="picture")
+     */
+    private File $pictureFile;
+
+    /**
+     * @var \DateTimeInterface|null
+     * @ORM\Column(type="datetime")
+     */
+    private $updateAt;
+
+    /**
      * @return string|null
      */
     public function getPicture(): ?string
@@ -84,25 +96,12 @@ class Project
     }
 
     /**
-     * @var File $pictureFile
-     * @Vich\UploadableField(mapping="pictures_directory", fileNameProperty="picture")
-     */
-    private File $pictureFile;
-
-    /**
      * @return File
      */
     public function getPictureFile(): ?File
     {
         return $this->pictureFile;
     }
-
-    /**
-     * @var \DateTimeInterface|null
-     * @ORM\Column(type="datetime")
-     */
-    private $updateAt;
-
 
     /**
      * @param File $pictureFile
