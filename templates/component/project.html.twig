@@ -6,20 +6,20 @@
         </div>
         <div id="sliderProjet" class="carousel slide" data-ride="carousel">
             <div class="carousel-inner">
-                <div class="carousel-item active">
-                    <div class="split">
-                        <div class="screen" style="background: url({{ asset('images/portfolio/portfolio-1.jpg') }})"></div>
-                        <div class="screen" style="background: url({{ asset('images/portfolio/portfolio-2.jpg') }})"></div>
-                        <div class="screen" style="background: url({{ asset('images/portfolio/blog-1.jpg') }})"></div>
-                        <div class="screen" style="background: url({{ asset('images/portfolio/LQ.jpg') }})"></div>
+                {% for project in projects %}
+                    <div class="carousel-item {% if loop.first %}active{% endif %}">
+                        <div class="split">
+                            {% for leProject in project %}
+                                <div class="screen" style="background: url({{ asset('static/images/pictures_project/' ~ leProject.picture) }})">
+                                    <a class="link-project" href="{{ path('single_project',
+                                        {'id': leProject.id}) }}">
+                                        <h2>{{ leProject.title }}<i class="fas fa-eye"></i></h2>
+                                    </a>
+                                </div>
+                            {% endfor %}
+                        </div>
                     </div>
-                </div>
-                <div class="carousel-item">
-                    <div class="split">
-                        <div class="screen" style="background: url({{ asset('images/portfolio/portfolio-1.jpg') }})"></div>
-                        <div class="screen" style="background: url({{ asset('images/portfolio/portfolio-2.jpg') }})"></div>
-                    </div>
-                </div>
+                {% endfor %}
             </div>
             <a class="carousel-control-prev" href="#sliderProjet" role="button" data-slide="prev">
                     <span class="color-arrow arrow-left">

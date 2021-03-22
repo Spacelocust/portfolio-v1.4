@@ -4,7 +4,9 @@
 # Put parameters here that don't need to change on each machine where the app is deployed
 # https://symfony.com/doc/current/best_practices/configuration.html#application-related-configuration
 parameters:
-    app.path.pictures_directory: /images/pictures
+    app.path.pictures_project: static/images/pictures_project
+    app.path.pictures_tech: static/images/pictures_tech
+    app.path.doc_project: static/documents/doc_project
 
 services:
     # default configuration for services in *this* file

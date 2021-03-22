@@ -1,0 +1,136 @@
+.split {
+  position: relative !important;
+  height: 80vh !important;
+  display: flex !important;
+
+  .screen {
+    position: relative !important;
+    flex-grow: 2 !important;
+    display: flex !important;
+    overflow: hidden !important;
+    transition: 0.5s !important;
+    background-repeat: no-repeat !important;
+    background-position: center center !important;
+
+    .link-project {
+      display: flex;
+      align-items: center;
+      justify-content: end;
+      position: absolute;
+      width: 50%;
+      top: 500px;
+      transform: translate(-200%);
+      transition: transform 1s, background-color .5s;
+      text-decoration: none;
+      background-color: $color-blue-dark;
+      color: $white;
+
+      i{
+         padding-left: 10px ;
+      }
+
+      &:hover {
+        background-color: #192C4A;
+      }
+
+    }
+
+    &:hover {
+      flex-grow: 5 !important;
+      filter: brightness(100%) !important;
+
+      .link-project {
+        transform: translate(100%);
+      }
+    }
+  }
+
+  &:hover {
+    .screen {
+      filter: brightness(20%);
+    }
+  }
+}
+
+.carousel-control-prev {
+  width: 7% !important;
+}
+
+.carousel-control-next {
+  width: 7% !important;
+}
+
+.color-arrow {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  background: rgba(0,0,0,0.7) !important;
+  width: 80px !important;
+  height: 80px !important;
+  border-radius: 50% 50% 50% 50% !important;
+  transition: 0.2s !important;
+
+  &:hover {
+    width: 60px !important;
+    height: 60px !important;
+  }
+}
+@media screen and (max-width:980px) {
+  .split {
+    flex-direction: column !important;
+    height: 100vh !important;
+
+    .screen {
+      margin: 10px 0 !important;
+      display: flex !important;
+      transition: 1s !important;
+      background-size: cover !important;
+      justify-content: center;
+      align-items: center;
+
+      .link-project {
+        width: auto;
+        top: unset;
+        align-items: center;
+        transform: translate(0);
+        opacity: 90%;
+
+        i{
+          padding-left: 0;
+        }
+
+        h2 {
+          font-size: 20px;
+        }
+      }
+
+      &:hover {
+        flex-grow: 3 !important;
+        opacity: 1 !important;
+
+        .link-project {
+          transform: translate(0);
+        }
+      }
+    }
+
+    &:hover {
+      .screen {
+        opacity: 1 !important;
+      }
+    }
+  }
+
+  .color-arrow {
+    width: 60px !important;
+    height: 60px !important;
+  }
+
+  .carousel-control-prev {
+    width: unset !important;
+  }
+
+  .carousel-control-next {
+    width: unset !important;
+  }
+}

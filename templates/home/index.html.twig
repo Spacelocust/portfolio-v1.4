@@ -1,15 +1,11 @@
 {% extends 'base.html.twig' %}
 
-
-{% block title %}BoganinLucas{% endblock %}
-
 {% block body %}
     {% include 'require/nav.html.twig' %}
     {% include 'component/profil.html.twig' %}
-    {% include 'component/realisation.html.twig' %}
-    {% include 'component/competence.html.twig' %}
-    {% include 'component/parcours.html.twig' %}
-    {% include 'component/mail.html.twig' %}
+    {% include 'component/project.html.twig' with {'projects' : projects} %}
+    {% include 'component/skill.html.twig' %}
+    {% include 'component/timeline.html.twig' with {'timelines' : timelines} %}
+    {% include 'component/mail.html.twig' with {'form' : form} %}
     {% include 'require/footer.html.twig' %}
 {% endblock %}
-

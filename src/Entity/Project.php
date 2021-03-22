@@ -47,11 +47,6 @@ class Project
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
      */
-    private $link_doc;
-
-    /**
-     * @ORM\Column(type="string", length=255, nullable=true)
-     */
     private $link_project;
 
     /**
@@ -60,16 +55,33 @@ class Project
     private $languageTech;
 
     /**
+     * @ORM\Column(type="boolean", length=1)
+     */
+    private bool $isDocument = false;
+
+    /**
      * @var string|null $picture
      * @ORM\Column(type="string",length=255)
      */
     private ?string $picture = null;
 
     /**
-     * @var File $pictureFile
-     * @Vich\UploadableField(mapping="pictures_directory", fileNameProperty="picture")
+     * @var File|null $pictureFile
+     * @Vich\UploadableField(mapping="pictures_project", fileNameProperty="picture")
      */
-    private File $pictureFile;
+    private ?File $pictureFile = null;
+
+    /**
+     * @var string|null $document
+     * @ORM\Column(type="string",length=255)
+     */
+    private ?string $document = null;
+
+    /**
+     * @var File|null $documentFile
+     * @Vich\UploadableField(mapping="doc_project", fileNameProperty="document")
+     */
+    private ?File $documentFile = null;
 
     /**
      * @var \DateTimeInterface|null
@@ -167,18 +179,6 @@ class Project
         return $this;
     }
 
-    public function getLinkDoc(): ?string
-    {
-        return $this->link_doc;
-    }
-
-    public function setLinkDoc(?string $link_doc): self
-    {
-        $this->link_doc = $link_doc;
-
-        return $this;
-    }
-
     public function getLinkProject(): ?string
     {
         return $this->link_project;
@@ -215,14 +215,62 @@ class Project
         return $this;
     }
 
-    public function getUploadDir()
+    /**
+     * @return string|null
+     */
+    public function getDocument(): ?string
     {
-        return '';
+        return $this->document;
     }
 
-    public function setUploadDir(string $dir)
+    /**
+     * @param string|null $document
+     */
+    public function setDocument(?string $document): self
     {
-        dump($dir); die;
-        return '';
+        $this->document = $document;
+
+        return $this;
+    }
+
+    /**
+     * @return File|null
+     */
+    public function getDocumentFile(): ?File
+    {
+        return $this->documentFile;
+    }
+
+    /**
+     * @param File|null $documentFile
+     */
+    public function setDocumentFile(?File $documentFile): void
+    {
+        $this->documentFile = $documentFile;
+        if($documentFile){
+            $this->updateAt = new \DateTime();
+            $this->isDocument = true;
+        }
+    }
+
+    public function getSlug(): string
+    {
+        return 'doc-'.$this->title;
+    }
+
+    /**
+     * @return bool
+     */
+    public function isDocument(): bool
+    {
+        return $this->isDocument;
+    }
+
+    /**
+     * @param bool $isDocument
+     */
+    public function setIsDocument(bool $isDocument): void
+    {
+        $this->isDocument = $isDocument;
     }
 }

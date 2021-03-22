@@ -1,0 +1,23 @@
+/*
+ Command à exécuter dans le terminal : "sass public/static/scss/_style.scss public/static/css/style.css --watch"
+ */
+
+@import "global/main";
+@import "global/variable";
+
+@import "require/footer";
+@import "require/header";
+@import "require/navbar";
+
+@import "component/contact";
+@import "component/project";
+@import "component/profil";
+@import "component/timeline";
+@import "component/loader";
+@import "component/skill";
+@import "component/single-project";
+
+@import "security/admin";
+
+@import "helper/hover-effect";
+@import "helper/parallax";

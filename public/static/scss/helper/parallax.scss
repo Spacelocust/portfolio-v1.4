@@ -1,0 +1,47 @@
+.pimg1 {
+  position: relative;
+  opacity: 1;
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  padding: 65px;
+  background-attachment: fixed;
+  background-image: url('../images/home-bg.png');
+  min-height: 100%;
+}
+
+.pimg2 {
+  position: relative;
+  opacity: 1;
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  padding: 65px;
+  background-attachment: fixed;
+  background-image: url('../images/slide-bg.jpg');
+  min-height: 600px;
+}
+
+.pimg3 {
+  position: relative;
+  opacity: 1;
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  padding: 65px;
+  background-attachment: fixed;
+  background-image: url('../images/projet.jpg');
+  min-height: 600px;
+}
+
+@media (max-width:376px) {
+  .pimg1 {
+    background-attachment: scroll;
+  }
+  .pimg2 {
+    background-attachment: scroll;
+  }
+  .pimg3 {
+    background-attachment: scroll;
+  }
+}

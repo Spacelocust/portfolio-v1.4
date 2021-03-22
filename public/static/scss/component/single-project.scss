@@ -1,0 +1,28 @@
+.project {
+  display: flex;
+  align-items: center;
+  background-color: $color-blue-light;
+  height: 100vh;
+
+  &_content {
+    background-color: $white;
+    height: 80vh;
+    width: 100%;
+
+    img {
+      width: 70%;
+    }
+
+    &_data {
+
+    }
+    a {
+      margin: 20px;
+      color: $white;
+
+      &:hover {
+        color: $white;
+      }
+    }
+  }
+}

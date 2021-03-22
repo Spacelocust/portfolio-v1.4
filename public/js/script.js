@@ -51,6 +51,22 @@
     }, function() {
         $(this).carousel('cycle');
     });
+
+    var swiper = new Swiper('.swiper-container', {
+        effect: 'cube',
+        grabCursor: true,
+        cubeEffect: {
+            shadow: true,
+            slideShadows: true,
+            shadowOffset: 20,
+            shadowScale: 0.94,
+        },
+        pagination: {
+            el: '.swiper-pagination',
+            dynamicBullets: true,
+        },
+    });
+
 })(jQuery); // End of use strict
 $( document ).ready(function(){
     $('.loader').fadeOut();
