@@ -5,6 +5,7 @@ namespace App\Entity;
 use App\Repository\StackTechRepository;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\HttpFoundation\File\File;
+use Symfony\Component\Validator\Constraints as Assert;
 use Vich\UploaderBundle\Mapping\Annotation as Vich;
 
 /**
@@ -21,11 +22,13 @@ class StackTech
     private $id;
 
     /**
+     * @Assert\NotBlank()
      * @ORM\Column(type="string", length=255)
      */
     private $title;
 
     /**
+     * @Assert\NotBlank( message="Veuillez insérer une image")
      * @var string|null $picture
      * @ORM\Column(type="string",length=255)
      */
@@ -42,6 +45,13 @@ class StackTech
      * @ORM\Column(type="datetime")
      */
     private $updateAt;
+
+    /**
+     * @Assert\NotBlank( message="Veuillez saisir un type")
+     * @ORM\ManyToOne(targetEntity=TypeSkill::class, inversedBy="skill")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $typeSkill;
 
     public function getId(): ?int
     {
@@ -113,5 +123,17 @@ class StackTech
     public function getSlug(): string
     {
         return 'tech-'.$this->title;
+    }
+
+    public function getTypeSkill(): ?TypeSkill
+    {
+        return $this->typeSkill;
+    }
+
+    public function setTypeSkill(?TypeSkill $typeSkill): self
+    {
+        $this->typeSkill = $typeSkill;
+
+        return $this;
     }
 }

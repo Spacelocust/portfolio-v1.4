@@ -3,34 +3,54 @@
   height: 80vh !important;
   display: flex !important;
 
+  .screen-none {
+    position: relative !important;
+    flex-grow: 2 !important;
+    display: flex !important;
+  }
+
   .screen {
     position: relative !important;
+    filter: blur(0);
     flex-grow: 2 !important;
     display: flex !important;
     overflow: hidden !important;
     transition: 0.5s !important;
+    background-size: cover;
     background-repeat: no-repeat !important;
     background-position: center center !important;
+    justify-content: center;
+    align-items: center;
 
-    .link-project {
-      display: flex;
-      align-items: center;
-      justify-content: end;
-      position: absolute;
-      width: 50%;
-      top: 500px;
-      transform: translate(-200%);
-      transition: transform 1s, background-color .5s;
-      text-decoration: none;
-      background-color: $color-blue-dark;
+    &-content {
+      padding: 10px;
+      background-color: $color-blue-light;
       color: $white;
+      box-sizing: content-box;
+      width: 50%;
+      border-radius: 5px;
+      text-align: center;
+      opacity: 0;
+      transform: translateY(50%);
+      transition: background-color 1s, transform 1s, opacity .5s;
 
-      i{
-         padding-left: 10px ;
+      fieldset {
+          border-radius: 5px;
+          border: 2px $white solid;
       }
 
-      &:hover {
-        background-color: #192C4A;
+      &-link {
+        background-color: white;
+        padding: 10px;
+        border-radius: 5px;
+        border: 2px white solid;
+        transition: .3s;
+
+        &:hover {
+          color: white;
+          background-color: $color-blue-dark;
+          border: 2px white solid;
+        }
       }
 
     }
@@ -39,15 +59,20 @@
       flex-grow: 5 !important;
       filter: brightness(100%) !important;
 
-      .link-project {
-        transform: translate(100%);
+      .screen-content {
+        transform: translateY(0);
+        opacity: 100;
+
+        &:hover {
+          background: $color-blue-dark;
+        }
       }
     }
   }
 
   &:hover {
     .screen {
-      filter: brightness(20%);
+      filter: blur(5px);
     }
   }
 }
@@ -84,33 +109,15 @@
       margin: 10px 0 !important;
       display: flex !important;
       transition: 1s !important;
-      background-size: cover !important;
-      justify-content: center;
-      align-items: center;
 
-      .link-project {
-        width: auto;
-        top: unset;
-        align-items: center;
-        transform: translate(0);
-        opacity: 90%;
-
-        i{
-          padding-left: 0;
-        }
-
-        h2 {
-          font-size: 20px;
-        }
+      &-content {
+        opacity: 100;
+        transform: translateY(0);
       }
 
       &:hover {
         flex-grow: 3 !important;
         opacity: 1 !important;
-
-        .link-project {
-          transform: translate(0);
-        }
       }
     }
 

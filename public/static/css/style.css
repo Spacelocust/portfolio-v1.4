@@ -15,6 +15,8 @@ p {
 
 a {
   color: #2d3e5c;
+  text-decoration: none !important;
+  font-family: "Montserrat", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
 }
 a:hover {
   color: #2d3e5c;
@@ -125,6 +127,10 @@ img::selection {
   color: white;
 }
 
+.erreur {
+  color: #ff0000;
+}
+
 @media (max-width: 376px) {
   .page-section h2.section-heading {
     font-size: 25px;
@@ -227,7 +233,7 @@ header.masthead .intro-text .intro-heading {
 }
 @media (max-width: 500px) {
   header.masthead .intro-text .intro-heading {
-    font-size: 40px;
+    font-size: 35px;
   }
 }
 #mainNav {
@@ -336,43 +342,65 @@ section#contact:-ms-input-placeholder {
   height: 80vh !important;
   display: flex !important;
 }
+.split .screen-none {
+  position: relative !important;
+  flex-grow: 2 !important;
+  display: flex !important;
+}
 .split .screen {
   position: relative !important;
+  filter: blur(0);
   flex-grow: 2 !important;
   display: flex !important;
   overflow: hidden !important;
   transition: 0.5s !important;
+  background-size: cover;
   background-repeat: no-repeat !important;
   background-position: center center !important;
-}
-.split .screen .link-project {
-  display: flex;
+  justify-content: center;
   align-items: center;
-  justify-content: end;
-  position: absolute;
-  width: 50%;
-  top: 500px;
-  transform: translate(-200%);
-  transition: transform 1s, background-color 0.5s;
-  text-decoration: none;
-  background-color: #47598f;
+}
+.split .screen-content {
+  padding: 10px;
+  background-color: #607aa3;
   color: #fff;
+  box-sizing: content-box;
+  width: 50%;
+  border-radius: 5px;
+  text-align: center;
+  opacity: 0;
+  transform: translateY(50%);
+  transition: background-color 1s, transform 1s, opacity 0.5s;
 }
-.split .screen .link-project i {
-  padding-left: 10px;
+.split .screen-content fieldset {
+  border-radius: 5px;
+  border: 2px #fff solid;
 }
-.split .screen .link-project:hover {
-  background-color: #192C4A;
+.split .screen-content-link {
+  background-color: white;
+  padding: 10px;
+  border-radius: 5px;
+  border: 2px white solid;
+  transition: 0.3s;
+}
+.split .screen-content-link:hover {
+  color: white;
+  background-color: #47598f;
+  border: 2px white solid;
 }
 .split .screen:hover {
   flex-grow: 5 !important;
   filter: brightness(100%) !important;
 }
-.split .screen:hover .link-project {
-  transform: translate(100%);
+.split .screen:hover .screen-content {
+  transform: translateY(0);
+  opacity: 100;
+}
+.split .screen:hover .screen-content:hover {
+  background: #47598f;
 }
 .split:hover .screen {
-  filter: brightness(20%);
+  filter: blur(5px);
 }
 
 .carousel-control-prev {
@@ -407,29 +435,14 @@ section#contact:-ms-input-placeholder {
     margin: 10px 0 !important;
     display: flex !important;
     transition: 1s !important;
-    background-size: cover !important;
-    justify-content: center;
-    align-items: center;
   }
-  .split .screen .link-project {
-    width: auto;
-    top: unset;
-    align-items: center;
-    transform: translate(0);
-    opacity: 90%;
-  }
-  .split .screen .link-project i {
-    padding-left: 0;
-  }
-  .split .screen .link-project h2 {
-    font-size: 20px;
+  .split .screen-content {
+    opacity: 100;
+    transform: translateY(0);
   }
   .split .screen:hover {
     flex-grow: 3 !important;
     opacity: 1 !important;
-  }
-  .split .screen:hover .link-project {
-    transform: translate(0);
   }
   .split:hover .screen {
     opacity: 1 !important;
@@ -483,13 +496,6 @@ section#contact:-ms-input-placeholder {
     left: 100%;
   }
 }
-h2 {
-  margin: 5%;
-  text-align: center;
-  font-size: 2rem;
-  font-weight: 100;
-}
-
 .timeline {
   display: flex;
   flex-direction: column;
@@ -697,13 +703,12 @@ h2 {
 }
 
 .swiper-container {
-  width: 300px;
-  height: 300px;
-  position: absolute;
-  left: 50%;
-  top: 50%;
-  margin-left: -150px;
-  margin-top: -150px;
+  width: 200px;
+  height: 200px;
+  margin: 20px;
+}
+.swiper-container h2 {
+  text-align: center;
 }
 
 .swiper-slide {
@@ -719,8 +724,12 @@ h2 {
 }
 .project_content {
   background-color: #fff;
-  height: 80vh;
+  min-height: 80vh;
   width: 100%;
+}
+.project_content h2 {
+  text-align: center;
+  margin-bottom: 20px;
 }
 .project_content img {
   width: 70%;
@@ -733,6 +742,110 @@ h2 {
   color: #fff;
 }
 
+.error404 {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100vh;
+  overflow-y: hidden !important;
+}
+.error404_wave {
+  position: absolute;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: #607aa3;
+}
+.error404_wave span {
+  position: absolute;
+  width: 325vh;
+  height: 325vh;
+  top: 0;
+  left: 50%;
+  transform: translate(-50%, -75%);
+  background-color: white;
+}
+.error404_wave span:nth-child(1) {
+  animation: animateWave 5s linear infinite;
+  border-radius: 45%;
+  background-color: white;
+}
+.error404_wave span:nth-child(2) {
+  animation: animateWave 10s linear infinite;
+  border-radius: 40%;
+  background-color: rgba(255, 255, 255, 0.5);
+}
+.error404_wave span:nth-child(3) {
+  animation: animateWave 15s linear infinite;
+  border-radius: 42.5%;
+  background-color: rgba(255, 255, 255, 0.5);
+}
+.error404_content {
+  position: relative;
+  z-index: 1;
+  color: #607aa3;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.error404_content a {
+  animation: animateShow 6s ease-in;
+  text-align: center;
+  margin: 0 auto;
+}
+.error404_content .typewriter {
+  font-family: Courier, monospace;
+  display: inline-block;
+}
+.error404_content .typewriter_text {
+  display: inline-block;
+  overflow: hidden;
+  letter-spacing: 2px;
+  white-space: nowrap;
+  font-size: 40px;
+  font-weight: 700;
+  border-right: 4px solid #47598f;
+  box-sizing: border-box;
+  width: 100%;
+  animation: typing 6s steps(30, end), blink 0.75s step-end infinite;
+}
+.error404_content .typewriter_text h2 {
+  font-size: 1em;
+}
+
+@keyframes typing {
+  from {
+    width: 0;
+  }
+  to {
+    width: 100%;
+  }
+}
+@keyframes animateShow {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 100%;
+  }
+}
+@keyframes blink {
+  from, to {
+    border-color: transparent;
+  }
+  50% {
+    border-color: #47598f;
+  }
+}
+@keyframes animateWave {
+  0% {
+    transform: translate(-50%, -75%) rotate(0deg);
+  }
+  100% {
+    transform: translate(-50%, -75%) rotate(360deg);
+  }
+}
 .form-login {
   height: 100vh !important;
 }

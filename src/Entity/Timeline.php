@@ -4,12 +4,19 @@ namespace App\Entity;
 
 use App\Repository\TimelineRepository;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity(repositoryClass=TimelineRepository::class)
  */
 class Timeline
 {
+
+    public function __construct()
+    {
+        $this->date = new \DateTime();
+    }
+
     /**
      * @ORM\Id
      * @ORM\GeneratedValue
@@ -18,6 +25,7 @@ class Timeline
     private $id;
 
     /**
+     * @Assert\NotBlank()
      * @ORM\Column(type="string", length=255)
      */
     private $title;
@@ -28,6 +36,7 @@ class Timeline
     private $date;
 
     /**
+     * @Assert\NotBlank()
      * @ORM\Column(type="text")
      */
     private $text;

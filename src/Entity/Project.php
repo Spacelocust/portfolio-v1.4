@@ -5,6 +5,7 @@ namespace App\Entity;
 use App\Repository\ProjectRepository;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\HttpFoundation\File\File;
+use Symfony\Component\Validator\Constraints as Assert;
 use Vich\UploaderBundle\Mapping\Annotation as Vich;
 
 
@@ -16,7 +17,10 @@ class Project
 {
     public function __construct(){
         $this->updateAt = new \DateTime();
+        $this->date_start = new \DateTime();
+        $this->date_end = new \DateTime();
     }
+
     /**
      * @ORM\Id
      * @ORM\GeneratedValue
@@ -25,21 +29,31 @@ class Project
     private $id;
 
     /**
+     * @Assert\NotBlank()
      * @ORM\Column(type="string", length=255)
      */
     private $title;
 
     /**
+     * @Assert\NotBlank()
      * @ORM\Column(type="text")
      */
     private $text;
 
     /**
+     * @Assert\NotBlank()
+     * @ORM\Column(type="text")
+     */
+    private $appraisal;
+
+    /**
+     * @Assert\NotBlank()
      * @ORM\Column(type="date")
      */
     private $date_start;
 
     /**
+     * @Assert\NotBlank()
      * @ORM\Column(type="date")
      */
     private $date_end;
@@ -50,6 +64,7 @@ class Project
     private $link_project;
 
     /**
+     * @Assert\NotBlank(message="Veuillez indiquer la/ ou les technoligie(s) utilisée(s)")
      * @ORM\Column(type="string", length=255)
      */
     private $languageTech;
@@ -60,6 +75,7 @@ class Project
     private bool $isDocument = false;
 
     /**
+     * @Assert\NotBlank( message="Veuillez insérer une image")
      * @var string|null $picture
      * @ORM\Column(type="string",length=255)
      */
@@ -73,7 +89,7 @@ class Project
 
     /**
      * @var string|null $document
-     * @ORM\Column(type="string",length=255)
+     * @ORM\Column(type="string",length=255, nullable=true)
      */
     private ?string $document = null;
 
@@ -272,5 +288,23 @@ class Project
     public function setIsDocument(bool $isDocument): void
     {
         $this->isDocument = $isDocument;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getAppraisal()
+    {
+        return $this->appraisal;
+    }
+
+    /**
+     * @param mixed $appraisal
+     */
+    public function setAppraisal($appraisal): self
+    {
+        $this->appraisal = $appraisal;
+
+        return $this;
     }
 }

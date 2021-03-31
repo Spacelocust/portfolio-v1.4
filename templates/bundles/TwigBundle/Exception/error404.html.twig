@@ -1,0 +1,17 @@
+{% extends 'base-form.html.twig' %}
+
+{% block body %}
+<div class="error404">
+    <div class="error404_wave">
+        <span></span>
+        <span></span>
+        <span></span>
+    </div>
+    <div class="error404_content">
+        <div class="typewriter">
+            <div class="typewriter_text"><h2>Oops.. Erreur 404</h2></div>
+        </div>
+        <a class="btn btn-primary" href="{{ path('home') }}">Retour à l'accueil</a>
+    </div>
+</div>
+{% endblock %}

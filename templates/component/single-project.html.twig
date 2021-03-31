@@ -5,14 +5,16 @@
         <div class="project_content">
             <a class="btn btn-primary" href="{{ path('home') }}">Retour accueil</a>
             <div class="container">
-                <h2>{{ project.title }}</h2>
+                <h2 class="section-heading text-uppercase">{{ project.title }}</h2>
+                <div class="divider"></div>
                 <div class="row">
                     <div class="col col-lg-8 col-sm-12 d-flex justify-content-lg-end justify-content-center">
                         <img class="rounded" src="{{ asset('static/images/pictures_project/' ~ project.picture) }}" alt="{{ project.picture }}">
                     </div>
                     <div class="col col-lg-4 col-12 col-12">
                         <ul class="list-group list-group-flush">
-                            <li class="list-group-item">{{ project.getDateStart|format_datetime('full', 'none', locale='fr') }} - {{ project.getDateEnd|format_datetime('full', 'none', locale='fr') }}</li>
+                            <li class="list-group-item"><i class="fas fa-calendar-alt"></i> {{ project.getDateStart|format_datetime('full', 'none', locale='fr') }} - {{ project.getDateEnd|format_datetime('full', 'none', locale='fr') }}</li>
+                            <li class="list-group-item"><i class="fas fa-microchip"></i> {{ project.languageTech|raw }}</li>
                             <li class="list-group-item">{{ project.text|raw }}</li>
                             {% if project.document %}
                             <li class="list-group-item">
@@ -23,6 +25,13 @@
                             </li>
                             {% endif%}
                         </ul>
+                    </div>
+                </div>
+                <div class="row d-flex justify-content-center">
+                    <div class="col col-12 col-12 mt-5">
+                        <h2 class="section-heading text-uppercase">Bilan</h2>
+                        <div class="divider"></div>
+                        <div class="text-justify">{{ project.appraisal|raw }}</div>
                     </div>
                 </div>
             </div>

@@ -11,10 +11,14 @@
                         <div class="split">
                             {% for leProject in project %}
                                 <div class="screen" style="background: url({{ asset('static/images/pictures_project/' ~ leProject.picture) }})">
-                                    <a class="link-project" href="{{ path('single_project',
-                                        {'id': leProject.id}) }}">
-                                        <h2>{{ leProject.title }}<i class="fas fa-eye"></i></h2>
-                                    </a>
+                                    <div class="screen-content">
+                                        <fieldset>
+                                            <h2>{{ leProject.title }}</h2>
+                                            <a class="screen-content-link" href="{{ path('single_project',{'id': leProject.id}) }}">
+                                                En savoir plus <i class="fas fa-angle-double-right"></i>
+                                            </a>
+                                        </fieldset>
+                                    </div>
                                 </div>
                             {% endfor %}
                         </div>

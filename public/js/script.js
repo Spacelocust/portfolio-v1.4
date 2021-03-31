@@ -46,7 +46,7 @@
     navbarCollapse();
     // Collapse the navbar when page is scrolled
     $(window).scroll(navbarCollapse);
-    $('#myCarousel4').hover(function() {
+    $('#sliderProjet').hover(function() {
         $(this).carousel('pause');
     }, function() {
         $(this).carousel('cycle');
@@ -55,19 +55,20 @@
     var swiper = new Swiper('.swiper-container', {
         effect: 'cube',
         grabCursor: true,
+        loop: true,
         cubeEffect: {
             shadow: true,
             slideShadows: true,
             shadowOffset: 20,
             shadowScale: 0.94,
         },
-        pagination: {
-            el: '.swiper-pagination',
-            dynamicBullets: true,
+        autoplay: {
+            delay: 2500,
+            disableOnInteraction: false,
         },
     });
 
 })(jQuery); // End of use strict
-$( document ).ready(function(){
+window.onload = function(){
     $('.loader').fadeOut();
-});
+};

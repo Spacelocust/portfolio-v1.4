@@ -5,6 +5,8 @@ namespace App\Controller\Admin;
 use App\Entity\StackTech;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Crud;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
+use EasyCorp\Bundle\EasyAdminBundle\Field\AssociationField;
+use EasyCorp\Bundle\EasyAdminBundle\Field\ChoiceField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\ImageField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
 use Vich\UploaderBundle\Form\Type\VichImageType;
@@ -35,6 +37,7 @@ class StackTechCrudController extends AbstractCrudController
                 ->setFormType(VichImageType::class)
                 ->setFormTypeOptions(['allow_delete' => false])
                 ->onlyOnForms(),
+            AssociationField::new('typeSkill', 'Type de compétence')
         ];
     }
 }

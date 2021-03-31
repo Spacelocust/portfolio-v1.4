@@ -6,7 +6,9 @@ use App\Entity\Contact;
 use App\Entity\Project;
 use App\Form\ContactType;
 use App\Repository\ProjectRepository;
+use App\Repository\StackTechRepository;
 use App\Repository\TimelineRepository;
+use App\Repository\TypeSkillRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -17,11 +19,15 @@ class HomeController extends AbstractController
 {
     private ProjectRepository $repoProject;
     private TimelineRepository $repoTimeline;
+    private StackTechRepository $repoSkill;
+    private TypeSkillRepository $repoTypeSkill;
 
-    public function __construct(ProjectRepository $repoProject, TimelineRepository $repoTimeline)
+    public function __construct(ProjectRepository $repoProject, TimelineRepository $repoTimeline, StackTechRepository $repoSkill, TypeSkillRepository $repoTypeSkill)
     {
         $this->repoProject = $repoProject;
         $this->repoTimeline = $repoTimeline;
+        $this->repoSkill = $repoSkill;
+        $this->repoTypeSkill = $repoTypeSkill;
     }
 
     /**
@@ -29,8 +35,6 @@ class HomeController extends AbstractController
      */
     public function index(Request $request, EntityManagerInterface $manager): Response
     {
-        $projects = $this->repoProject->findAll();
-
         $contact = new Contact();
 
         $contactForm = $this->createForm(ContactType::class, $contact);
@@ -45,8 +49,10 @@ class HomeController extends AbstractController
         }
 
         return $this->render('home/index.html.twig', [
-            'projects' => array_chunk($projects, 4),
+            'projects' => array_chunk($this->repoProject->findAll(), 4),
             'timelines' => $this->repoTimeline->findBy([], ['date' => 'DESC']),
+            'skills' =>  $this->repoSkill->findAll(),
+            'typeSkills' => $this->repoTypeSkill->findAll(),
             'form' => $contactForm->createView(),
         ]);
     }

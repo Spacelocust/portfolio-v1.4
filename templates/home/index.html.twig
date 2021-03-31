@@ -4,7 +4,7 @@
     {% include 'require/nav.html.twig' %}
     {% include 'component/profil.html.twig' %}
     {% include 'component/project.html.twig' with {'projects' : projects} %}
-    {% include 'component/skill.html.twig' %}
+    {% include 'component/skill.html.twig' with {'skills' : skills, 'typeSkills': typeSkills} %}
     {% include 'component/timeline.html.twig' with {'timelines' : timelines} %}
     {% include 'component/mail.html.twig' with {'form' : form} %}
     {% include 'require/footer.html.twig' %}
